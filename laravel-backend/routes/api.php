@@ -33,4 +33,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
  Route::post('/trip', [DriverController::class, "store"]);
  Route::post('/trip/{trip}', [DriverController::class, "getTrip"]);
+ Route::post('/trip/{trip}/accept', [DriverController::class, "accept"]);
+ Route::post('/trip/{trip}/start', [DriverController::class, "start"]);
+ Route::post('/trip/{trip}/end', [DriverController::class, "end"]);
+ Route::post('/trip/{trip}/location', [DriverController::class, "location"]);
 });

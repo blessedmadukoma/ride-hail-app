@@ -11,6 +11,13 @@ class Trip extends Model
 
     protected $guarded = [];
 
+    // convert the types of the following columns to JSON to store in the database
+    protected $casts = [
+        'origin' => 'json',
+        'destination' => 'json',
+        'driver_location' => 'json'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
