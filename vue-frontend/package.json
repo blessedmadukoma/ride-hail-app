@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "autoprefixer": "^10.4.15",
+    "axios": "^1.4.0",
     "maska": "^2.1.10",
     "pinia": "^2.1.6",
     "postcss": "^8.4.28",
