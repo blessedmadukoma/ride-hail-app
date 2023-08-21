@@ -30,6 +30,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@vitejs/plugin-vue", "virtual:38d697d68424999c0272f594caf833e08789cf967f6173112d9e11ab3114fec65af4a30aa989f146bce79fe39798ca8d9f8bb7715df8aeccd3639467585dc07c#npm:4.3.2"],\
             ["autoprefixer", "virtual:38d697d68424999c0272f594caf833e08789cf967f6173112d9e11ab3114fec65af4a30aa989f146bce79fe39798ca8d9f8bb7715df8aeccd3639467585dc07c#npm:10.4.15"],\
+            ["maska", "npm:2.1.10"],\
             ["pinia", "virtual:38d697d68424999c0272f594caf833e08789cf967f6173112d9e11ab3114fec65af4a30aa989f146bce79fe39798ca8d9f8bb7715df8aeccd3639467585dc07c#npm:2.1.6"],\
             ["postcss", "npm:8.4.28"],\
             ["tailwindcss", "npm:3.3.3"],\
@@ -1601,6 +1602,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["maska", [\
+        ["npm:2.1.10", {\
+          "packageLocation": "./.yarn/cache/maska-npm-2.1.10-9ff4fbc277-760d59a97d.zip/node_modules/maska/",\
+          "packageDependencies": [\
+            ["maska", "npm:2.1.10"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["merge2", [\
         ["npm:1.4.1", {\
           "packageLocation": "./.yarn/cache/merge2-npm-1.4.1-a2507bd06c-7268db63ed.zip/node_modules/merge2/",\
@@ -2216,6 +2226,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["ridaar", "workspace:."],\
             ["@vitejs/plugin-vue", "virtual:38d697d68424999c0272f594caf833e08789cf967f6173112d9e11ab3114fec65af4a30aa989f146bce79fe39798ca8d9f8bb7715df8aeccd3639467585dc07c#npm:4.3.2"],\
             ["autoprefixer", "virtual:38d697d68424999c0272f594caf833e08789cf967f6173112d9e11ab3114fec65af4a30aa989f146bce79fe39798ca8d9f8bb7715df8aeccd3639467585dc07c#npm:10.4.15"],\
+            ["maska", "npm:2.1.10"],\
             ["pinia", "virtual:38d697d68424999c0272f594caf833e08789cf967f6173112d9e11ab3114fec65af4a30aa989f146bce79fe39798ca8d9f8bb7715df8aeccd3639467585dc07c#npm:2.1.6"],\
             ["postcss", "npm:8.4.28"],\
             ["tailwindcss", "npm:3.3.3"],\

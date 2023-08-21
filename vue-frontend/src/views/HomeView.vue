@@ -1,9 +1,9 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+const msg = "Old Hello World!"
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    {{ msg }}
   </main>
 </template>
