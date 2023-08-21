@@ -30,4 +30,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
  Route::get('/driver', [DriverController::class, "getDriver"]);
  Route::post('/driver', [DriverController::class, "updateDriver"]);
+
+ Route::post('/trip', [DriverController::class, "store"]);
+ Route::post('/trip/{trip}', [DriverController::class, "getTrip"]);
 });
