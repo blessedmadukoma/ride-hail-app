@@ -1,13 +1,14 @@
 import { createRouter, createWebHistory } from "vue-router";
 import LandingView from "../views/LandingView.vue";
 import LoginView from "../views/LoginView.vue";
+import axios from "axios";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
-      name: "home",
+      name: "login",
       component: LoginView,
     },
     {
@@ -25,5 +26,33 @@ const router = createRouter({
     // }
   ],
 });
+
+router.beforeEach((to) => {
+  if (to.name === "login") {
+    return true;
+  }
+
+  if (!localStorage.getItem("token")) {
+    return { name: "login" };
+  }
+
+  checkTokenAuthenticity();
+});
+
+const checkTokenAuthenticity = () => {
+  axios
+    .get("http://localhost:8000/api/user", {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch((error) => {
+      localStorage.removeItem("token");
+      router.push({ name: "login" });
+    });
+};
 
 export default router;
