@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\TripController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,10 +32,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
  Route::get('/driver', [DriverController::class, "getDriver"]);
  Route::post('/driver', [DriverController::class, "updateDriver"]);
 
- Route::post('/trip', [DriverController::class, "store"]);
- Route::post('/trip/{trip}', [DriverController::class, "getTrip"]);
- Route::post('/trip/{trip}/accept', [DriverController::class, "accept"]);
- Route::post('/trip/{trip}/start', [DriverController::class, "start"]);
- Route::post('/trip/{trip}/end', [DriverController::class, "end"]);
- Route::post('/trip/{trip}/location', [DriverController::class, "location"]);
+ Route::post('/trip', [TripController::class, "store"]);
+ Route::post('/trip/{trip}', [TripController::class, "getTrip"]);
+ Route::post('/trip/{trip}/accept', [TripController::class, "accept"]);
+ Route::post('/trip/{trip}/start', [TripController::class, "start"]);
+ Route::post('/trip/{trip}/end', [TripController::class, "end"]);
+ Route::post('/trip/{trip}/location', [TripController::class, "location"]);
 });
