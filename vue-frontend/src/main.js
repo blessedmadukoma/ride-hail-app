@@ -15,8 +15,7 @@ app.use(router);
 
 app.use(VueGoogleMaps, {
   load: {
-    // key: process.env.VUE_APP_GOOGLE_MAPS_API_KEY,
-    key: "mysecretkey",
+    key: `${import.meta.env.VITE_GOOGLE_MAPS_API_KEY}`,
     libraries: "places",
   },
 });

@@ -29,7 +29,7 @@ const formattedCredentials = computed(() => {
 })
 
 const handleLogin = () => {
-  axios.post('http://localhost:8000/api/login', formattedCredentials.value)
+  axios.post(`${import.meta.env.VITE_API_URL}/login`, formattedCredentials.value)
     .then((response) => {
       console.log(response);
       waitingOnVerification.value = true;
@@ -41,7 +41,7 @@ const handleLogin = () => {
 
 
 const handleVerification = () => {
-  axios.post('http://localhost:8000/api/login/verify', formattedCredentials.value).then((response) => {
+  axios.post(`${import.meta.env.VITE_API_URL}/login/verify`, formattedCredentials.value).then((response) => {
     console.log(response.data);
 
     localStorage.setItem('token', response.data);
