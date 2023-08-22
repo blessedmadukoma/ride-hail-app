@@ -28,9 +28,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["@fawmi/vue-google-maps", "npm:0.9.79"],\
             ["@vitejs/plugin-vue", "virtual:38d697d68424999c0272f594caf833e08789cf967f6173112d9e11ab3114fec65af4a30aa989f146bce79fe39798ca8d9f8bb7715df8aeccd3639467585dc07c#npm:4.3.2"],\
             ["autoprefixer", "virtual:38d697d68424999c0272f594caf833e08789cf967f6173112d9e11ab3114fec65af4a30aa989f146bce79fe39798ca8d9f8bb7715df8aeccd3639467585dc07c#npm:10.4.15"],\
             ["axios", "npm:1.4.0"],\
+            ["fast-deep-equal", "npm:3.1.3"],\
             ["maska", "npm:2.1.10"],\
             ["pinia", "virtual:38d697d68424999c0272f594caf833e08789cf967f6173112d9e11ab3114fec65af4a30aa989f146bce79fe39798ca8d9f8bb7715df8aeccd3639467585dc07c#npm:2.1.6"],\
             ["postcss", "npm:8.4.28"],\
@@ -285,6 +287,27 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/unplugged/@esbuild-win32-x64-npm-0.18.20-37a9ab2bda/node_modules/@esbuild/win32-x64/",\
           "packageDependencies": [\
             ["@esbuild/win32-x64", "npm:0.18.20"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@fawmi/vue-google-maps", [\
+        ["npm:0.9.79", {\
+          "packageLocation": "./.yarn/cache/@fawmi-vue-google-maps-npm-0.9.79-081e884680-f05bd15516.zip/node_modules/@fawmi/vue-google-maps/",\
+          "packageDependencies": [\
+            ["@fawmi/vue-google-maps", "npm:0.9.79"],\
+            ["@googlemaps/markerclusterer", "npm:2.4.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@googlemaps/markerclusterer", [\
+        ["npm:2.4.0", {\
+          "packageLocation": "./.yarn/cache/@googlemaps-markerclusterer-npm-2.4.0-c89ae88fd1-9a4d385503.zip/node_modules/@googlemaps/markerclusterer/",\
+          "packageDependencies": [\
+            ["@googlemaps/markerclusterer", "npm:2.4.0"],\
+            ["fast-deep-equal", "npm:3.1.3"],\
+            ["supercluster", "npm:8.0.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -815,7 +838,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["browserslist", "npm:4.21.10"],\
             ["caniuse-lite", "npm:1.0.30001522"],\
-            ["electron-to-chromium", "npm:1.4.496"],\
+            ["electron-to-chromium", "npm:1.4.498"],\
             ["node-releases", "npm:2.0.13"],\
             ["update-browserslist-db", "virtual:e2170a875bba2f8fa9e93e47c65f2f250097e101a59d95ea6fd852f32965e8cd6cef3b5662aa7295279d5bc60c9a612ddb8515c7dd1b7e8fb9984dee1823e7d6#npm:1.0.11"]\
           ],\
@@ -868,7 +891,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["chokidar", "npm:3.5.3"],\
             ["anymatch", "npm:3.1.3"],\
             ["braces", "npm:3.0.2"],\
-            ["fsevents", "patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=df0bf1"],\
+            ["fsevents", "patch:fsevents@npm%3A2.3.3#~builtin<compat/fsevents>::version=2.3.3&hash=df0bf1"],\
             ["glob-parent", "npm:5.1.2"],\
             ["is-binary-path", "npm:2.1.0"],\
             ["is-glob", "npm:4.0.3"],\
@@ -1060,10 +1083,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["electron-to-chromium", [\
-        ["npm:1.4.496", {\
-          "packageLocation": "./.yarn/cache/electron-to-chromium-npm-1.4.496-90aae7ba69-b90cc4cc71.zip/node_modules/electron-to-chromium/",\
+        ["npm:1.4.498", {\
+          "packageLocation": "./.yarn/cache/electron-to-chromium-npm-1.4.498-2dc75388b2-01962ae42e.zip/node_modules/electron-to-chromium/",\
           "packageDependencies": [\
-            ["electron-to-chromium", "npm:1.4.496"]\
+            ["electron-to-chromium", "npm:1.4.498"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -1166,6 +1189,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/exponential-backoff-npm-3.1.1-04df458b30-3d21519a4f.zip/node_modules/exponential-backoff/",\
           "packageDependencies": [\
             ["exponential-backoff", "npm:3.1.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["fast-deep-equal", [\
+        ["npm:3.1.3", {\
+          "packageLocation": "./.yarn/cache/fast-deep-equal-npm-3.1.3-790edcfcf5-e21a9d8d84.zip/node_modules/fast-deep-equal/",\
+          "packageDependencies": [\
+            ["fast-deep-equal", "npm:3.1.3"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -1286,10 +1318,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["fsevents", [\
-        ["patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=df0bf1", {\
-          "packageLocation": "./.yarn/unplugged/fsevents-patch-2882183fbf/node_modules/fsevents/",\
+        ["patch:fsevents@npm%3A2.3.3#~builtin<compat/fsevents>::version=2.3.3&hash=df0bf1", {\
+          "packageLocation": "./.yarn/unplugged/fsevents-patch-21ad2b1333/node_modules/fsevents/",\
           "packageDependencies": [\
-            ["fsevents", "patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=df0bf1"],\
+            ["fsevents", "patch:fsevents@npm%3A2.3.3#~builtin<compat/fsevents>::version=2.3.3&hash=df0bf1"],\
             ["node-gyp", "npm:9.4.0"]\
           ],\
           "linkType": "HARD"\
@@ -1597,6 +1629,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/jiti-npm-1.19.3-11389fe829-de3dacdfe3.zip/node_modules/jiti/",\
           "packageDependencies": [\
             ["jiti", "npm:1.19.3"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["kdbush", [\
+        ["npm:4.0.2", {\
+          "packageLocation": "./.yarn/cache/kdbush-npm-4.0.2-e4894ed9f4-6782ef2cda.zip/node_modules/kdbush/",\
+          "packageDependencies": [\
+            ["kdbush", "npm:4.0.2"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -2327,9 +2368,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["ridaar", "workspace:."],\
+            ["@fawmi/vue-google-maps", "npm:0.9.79"],\
             ["@vitejs/plugin-vue", "virtual:38d697d68424999c0272f594caf833e08789cf967f6173112d9e11ab3114fec65af4a30aa989f146bce79fe39798ca8d9f8bb7715df8aeccd3639467585dc07c#npm:4.3.2"],\
             ["autoprefixer", "virtual:38d697d68424999c0272f594caf833e08789cf967f6173112d9e11ab3114fec65af4a30aa989f146bce79fe39798ca8d9f8bb7715df8aeccd3639467585dc07c#npm:10.4.15"],\
             ["axios", "npm:1.4.0"],\
+            ["fast-deep-equal", "npm:3.1.3"],\
             ["maska", "npm:2.1.10"],\
             ["pinia", "virtual:38d697d68424999c0272f594caf833e08789cf967f6173112d9e11ab3114fec65af4a30aa989f146bce79fe39798ca8d9f8bb7715df8aeccd3639467585dc07c#npm:2.1.6"],\
             ["postcss", "npm:8.4.28"],\
@@ -2356,7 +2399,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/rollup-npm-3.28.0-4ab1b4022e-6ded4a0d3c.zip/node_modules/rollup/",\
           "packageDependencies": [\
             ["rollup", "npm:3.28.0"],\
-            ["fsevents", "patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=df0bf1"]\
+            ["fsevents", "patch:fsevents@npm%3A2.3.3#~builtin<compat/fsevents>::version=2.3.3&hash=df0bf1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -2560,6 +2603,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["supercluster", [\
+        ["npm:8.0.1", {\
+          "packageLocation": "./.yarn/cache/supercluster-npm-8.0.1-32b2d8d364-39d141f768.zip/node_modules/supercluster/",\
+          "packageDependencies": [\
+            ["supercluster", "npm:8.0.1"],\
+            ["kdbush", "npm:4.0.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["supports-preserve-symlinks-flag", [\
         ["npm:1.0.0", {\
           "packageLocation": "./.yarn/cache/supports-preserve-symlinks-flag-npm-1.0.0-f17c4d0028-53b1e247e6.zip/node_modules/supports-preserve-symlinks-flag/",\
@@ -2736,7 +2789,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/sugarss", null],\
             ["@types/terser", null],\
             ["esbuild", "npm:0.18.20"],\
-            ["fsevents", "patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=df0bf1"],\
+            ["fsevents", "patch:fsevents@npm%3A2.3.3#~builtin<compat/fsevents>::version=2.3.3&hash=df0bf1"],\
             ["less", null],\
             ["lightningcss", null],\
             ["postcss", "npm:8.4.28"],\

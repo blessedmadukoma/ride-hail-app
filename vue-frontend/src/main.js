@@ -1,14 +1,24 @@
-import './assets/main.css'
+import "./assets/main.css";
 
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import { createApp } from "vue";
+import { createPinia } from "pinia";
 
-import App from './App.vue'
-import router from './router'
+import App from "./App.vue";
+import router from "./router";
 
-const app = createApp(App)
+import VueGoogleMaps from "@fawmi/vue-google-maps";
 
-app.use(createPinia())
-app.use(router)
+const app = createApp(App);
 
-app.mount('#app')
+app.use(createPinia());
+app.use(router);
+
+app.use(VueGoogleMaps, {
+  load: {
+    // key: process.env.VUE_APP_GOOGLE_MAPS_API_KEY,
+    key: "mysecretkey",
+    libraries: "places",
+  },
+});
+
+app.mount("#app");
