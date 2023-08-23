@@ -13,9 +13,11 @@ class Trip extends Model
 
     // convert the types of the following columns to JSON to store in the database
     protected $casts = [
-        'origin' => 'json',
-        'destination' => 'json',
-        'driver_location' => 'json'
+        'origin' => 'array',
+        'destination' => 'array',
+        'driver_location' => 'array',
+        'is_started' => 'boolean',
+        'is_complete' => 'boolean'
     ];
 
     public function user()
