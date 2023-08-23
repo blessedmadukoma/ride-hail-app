@@ -73,7 +73,7 @@ onMounted(async () => {
 const handleConfirmTrip = () => {
   http().post('/trip', {
     origin: location.current.geometry,
-    destination: location.current.geometry,
+    destination: location.destination.geometry,
     destination_name: location.destination.name,
   }).then((response) => {
     router.push({ name: 'trip' })
