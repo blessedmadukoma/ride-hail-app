@@ -2,9 +2,13 @@ import { ref, computed, reactive } from "vue";
 import { defineStore } from "pinia";
 
 const getUserLocation = () => {
-  return new Promise((response, reject) => {
-    navigator.geolocation.getCurrentPosition(response, reject);
-  });
+  try {
+    return new Promise((res, rej) => {
+      navigator.geolocation.getCurrentPosition(res, rej);
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const useLocationStore = defineStore("location", () => {
