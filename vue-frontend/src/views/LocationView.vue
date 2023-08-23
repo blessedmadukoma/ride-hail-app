@@ -36,22 +36,19 @@ const location = useLocationStore();
 const router = useRouter();
 
 const handleLocationChanged = (e) => {
-  console.log('location changed:', e);
-
   location.$patch({
     destination: {
       name: e.name,
       address: e.formatted_address,
       geometry: {
-        latitude: e.geometry.location.lat(),
-        longitude: e.geometry.location.lng(),
+        lat: e.geometry.location.lat(),
+        lng: e.geometry.location.lng(),
       }
     }
   })
 }
 
 const handleSelectedLocation = () => {
-  console.log(location.destination.name);
   if (location.destination.name !== '') {
     router.push({ name: "map" })
   }
