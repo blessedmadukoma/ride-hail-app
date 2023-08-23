@@ -19,7 +19,7 @@
             class="inline-flex justify-center rounded-md border border-black outline-black py-2 px-4 text-sm font-medium text-gray-900 shadow-sm hover:bg-gray-100 focus:outline-none">Go
             Back</button>
 
-          <button type="button"
+          <button @click="handleSelectedLocation" type="button"
             class="inline-flex justify-center rounded-md border border-transparent bg-black py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-600 focus:outline-none">Find
             A Ride</button>
         </div>
@@ -29,8 +29,32 @@
 </template>
 
 <script setup>
+import { useLocationStore } from '../stores/location';
+import { useRouter } from 'vue-router';
+
+const location = useLocationStore();
+const router = useRouter();
+
 const handleLocationChanged = (e) => {
   console.log('location changed:', e);
+
+  location.$patch({
+    destination: {
+      name: e.name,
+      address: e.formatted_address,
+      geometry: {
+        latitude: e.geometry.location.lat(),
+        longitude: e.geometry.location.lng(),
+      }
+    }
+  })
+}
+
+const handleSelectedLocation = () => {
+  console.log(location.destination.name);
+  if (location.destination.name !== '') {
+    router.push({ name: "map" })
+  }
 }
 </script>
 
