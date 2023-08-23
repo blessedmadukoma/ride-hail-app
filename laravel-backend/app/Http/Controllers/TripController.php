@@ -18,7 +18,7 @@ class TripController extends Controller
         $request->validate([
             'origin' => 'required',
             'destination' => 'required',
-            'destination_name' => 'required|date',
+            'destination_name' => 'required',
         ]);
 
         $trip = $request->user()->trips()->create($request->only([
