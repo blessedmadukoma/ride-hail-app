@@ -15,7 +15,7 @@
         </div>
 
         <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
-          <button type="button"
+          <button @click="handleConfirmTrip" type="button"
             class="inline-flex justify-center rounded-md border border-transparent bg-black py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-600 focus:outline-none">Let's
             Go!</button>
         </div>
@@ -28,6 +28,7 @@
 import { useLocationStore } from '@/stores/location';
 import { useRouter } from 'vue-router';
 import { onMounted, ref } from 'vue';
+import http from '../helpers/http';
 
 const location = useLocationStore();
 const router = useRouter();
@@ -68,6 +69,18 @@ onMounted(async () => {
   })
 
 })
+
+const handleConfirmTrip = () => {
+  http().post('/trip', {
+    origin: location.current.geometry,
+    destination: location.current.geometry,
+    destination_name: location.destination.name,
+  }).then((response) => {
+    router.push({ name: 'trip' })
+  }).catch((error) => {
+    console.error(error);
+  })
+}
 
 
 </script>
