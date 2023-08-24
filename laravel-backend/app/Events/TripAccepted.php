@@ -12,7 +12,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class TripAccepted implements ShouldBroadcast
+class TripAccepted
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
