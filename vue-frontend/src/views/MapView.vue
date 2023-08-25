@@ -14,15 +14,7 @@
           </div>
         </div>
 
-        <!-- <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
-          <button @click="handleConfirmTrip" type="button"
-            class="inline-flex justify-center rounded-md border border-transparent bg-black py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-600 focus:outline-none">Let's
-            Go!</button>
-        </div> -->
-
-
         <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
-
           <button @click="handleConfirmTrip" :loading="loading" type="button"
             class="inline-flex justify-center rounded-md border border-transparent bg-black py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-600 focus:outline-none">
             <Loading v-if="loading" :active="loading" text="Confirming Trip" />
@@ -43,16 +35,14 @@ import { onMounted, ref } from 'vue';
 import http from '../helpers/http';
 import Loading from '../components/Loading.vue';
 
+import toggleLoading from '../helpers/loading';
+
 const location = useLocationStore();
 const router = useRouter();
 
 const loading = ref(false);
 
 const gMap = ref(null)
-
-const toggleLoading = () => {
-  loading.value = !loading.value;
-}
 
 onMounted(async () => {
   // check if user has a location set
@@ -90,16 +80,16 @@ onMounted(async () => {
 })
 
 const handleConfirmTrip = () => {
-  toggleLoading();
+  toggleLoading(loading);
 
   http().post('/trip', {
-    origin: JSON.stringify(location.current.geometry),
-    // origin: location.current.geometry,
-    destination: JSON.stringify(location.destination.geometry),
-    // destination: location.destination.geometry,
+    // origin: JSON.stringify(location.current.geometry),
+    origin: location.current.geometry,
+    // destination: JSON.stringify(location.destination.geometry),
+    destination: location.destination.geometry,
     destination_name: location.destination.name,
   }).then((response) => {
-    toggleLoading();
+    toggleLoading(loading);
 
     console.log(response.data);
 
