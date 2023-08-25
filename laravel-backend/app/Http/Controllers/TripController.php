@@ -63,7 +63,7 @@ class TripController extends Controller
 
         $trip->load('driver.user');
 
-        TripAccepted::dispatch($trip, $request->user());
+        TripAccepted::dispatch($trip, $trip->user);
 
         return $trip;
     }

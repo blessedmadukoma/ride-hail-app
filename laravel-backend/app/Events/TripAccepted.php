@@ -16,9 +16,8 @@ class TripAccepted implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public Trip $trip;
-    private User $user;
-
+    public $trip;
+    private $user;
     /**
      * Create a new event instance.
      */
@@ -36,8 +35,7 @@ class TripAccepted implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            // new PrivateChannel('channel-name'),
-            new Channel('passenger_', $this->user->id),
+            new Channel('passenger_' . $this->user->id),
         ];
     }
 }
