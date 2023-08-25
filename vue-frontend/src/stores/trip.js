@@ -6,6 +6,18 @@ export const useTripStore = defineStore("trip", () => {
   const user_id = ref(null);
   const destination_name = ref("");
 
+  const driver = reactive({
+    id: null,
+    year: null,
+    make: null,
+    model: null,
+    license_plate: null,
+    color: null,
+    user: {
+      name: null,
+    },
+  });
+
   const origin = reactive({
     lat: null,
     lng: null,
@@ -27,6 +39,14 @@ export const useTripStore = defineStore("trip", () => {
     destination.lng = null;
 
     destination_name.value = "";
+
+    driver.id = null;
+    driver.year = null;
+    driver.make = null;
+    driver.model = null;
+    driver.license_plate = null;
+    driver.color = null;
+    driver.user.name = null;
   };
 
   return { id, user_id, origin, destination, destination_name, reset };

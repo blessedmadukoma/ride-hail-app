@@ -80,6 +80,7 @@ const updateMapBounds = (mapObject) => {
 }
 
 onMounted(() => {
+  console.log("Trip:", trip);
   gMap.value.$mapPromise.then((mapObject) => {
     updateMapBounds(mapObject)
 

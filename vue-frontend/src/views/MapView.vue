@@ -36,8 +36,11 @@ import http from '../helpers/http';
 import Loading from '../components/Loading.vue';
 
 import toggleLoading from '../helpers/loading';
+import { useTripStore } from '../stores/trip';
 
 const location = useLocationStore();
+const trip = useTripStore();
+
 const router = useRouter();
 
 const loading = ref(false);
@@ -92,6 +95,7 @@ const handleConfirmTrip = () => {
     toggleLoading(loading);
 
     console.log(response.data);
+    trip.$patch(response.data)
 
     router.push({ name: 'trip' })
   }).catch((error) => {
