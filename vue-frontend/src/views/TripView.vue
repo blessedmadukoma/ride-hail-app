@@ -9,6 +9,7 @@
         <div>
           <GMapMap ref="gMap" :zoom="14" :center="location.current.geometry" style="width: 100%; height: 256px;">
             <GMapMarker :position="location.current.geometry" :icon="currentIcon" />
+            <GMapMarker v-if="trip.driver_location" :position="trip.driver_location" :icon="driverIcon" />
           </GMapMap>
         </div>
 
@@ -35,11 +36,30 @@ const title = ref('Waiting on a driver...')
 const message = ref('When a driver accepts the trip, their info will appear here.')
 
 const currentIcon = {
+  url: 'https://openmoji.org/data/color/svg/1F920.svg',
+  scaledSize: {
+    width: 24,
+    height: 24,
+  }
+}
+
+const driverIcon = {
   url: 'https://openmoji.org/data/color/svg/1F698.svg',
   scaledSize: {
     width: 24,
     height: 24,
   }
+}
+
+const updateMapBounds = () => {
+  let originPoint = new google.maps.LatLng(location.current.geometry),
+    driverPoint = new google.maps.LatLng(trip.driver_location),
+    latLngBounds = new google.maps.LatLngBounds()
+
+  latLngBounds.extend(originPoint)
+  latLngBounds.extend(driverPoint)
+
+  gMapObject.value.fitBounds(latLngBounds)
 }
 
 onMounted(() => {
@@ -62,6 +82,12 @@ onMounted(() => {
 
         title.value = 'Your driver is on the way!'
         message.value = `${e.trip.driver.user.name} is coming in a ${e.trip.driver.year} ${e.trip.driver.color} ${e.trip.driver.make} ${e.trip.driver.model} with a license plate #${e.trip.driver.license_plate}`
+      })
+      .listen('TripLocationUpdated', (e) => {
+        trip.$patch(e.trip);
+
+        // Zoom in on the driver's location
+        setTimeout(updateMapBounds, 1000);
       })
   } catch (error) {
     console.log(error);

@@ -28,6 +28,11 @@ export const useTripStore = defineStore("trip", () => {
     lng: null,
   });
 
+  const driver_location = reactive({
+    lat: null,
+    lng: null,
+  });
+
   const reset = () => {
     id.value = null;
     user_id.value = null;
@@ -37,6 +42,9 @@ export const useTripStore = defineStore("trip", () => {
 
     destination.lat = null;
     destination.lng = null;
+
+    driver_location.lat = null;
+    driver_location.lng = null;
 
     destination_name.value = "";
 
@@ -49,5 +57,13 @@ export const useTripStore = defineStore("trip", () => {
     driver.user.name = null;
   };
 
-  return { id, user_id, origin, destination, destination_name, reset };
+  return {
+    id,
+    user_id,
+    origin,
+    destination,
+    destination_name,
+    driver_location,
+    reset,
+  };
 });
