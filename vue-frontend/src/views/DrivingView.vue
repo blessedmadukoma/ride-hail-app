@@ -105,8 +105,6 @@ const handleStartTrip = () => {
   toggleLoading(loadingStartTrip);
   http().post(`/trip/${trip.id}/start`)
     .then((response) => {
-      console.log(response.data);
-      // trip.is_started = true;
       title.value = `Traveling to ${response.data.destination_name}...`
       message.value = `Going to drop off passenger at ${response.data.destination_name}`
       location.$patch({
@@ -128,7 +126,6 @@ const handleCompleteTrip = () => {
   toggleLoading(loadingCompleteTrip);
   http().post(`/trip/${trip.id}/end`)
     .then((response) => {
-      // trip.is_completed = true;
       title.value = 'Trip completed!'
 
       trip.$patch(response.data)

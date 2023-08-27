@@ -76,47 +76,45 @@ onMounted(() => {
       enabledTransports: ['ws', 'wss']
     })
 
-    echo.channel(`passenger_${trip.user_id}`)
-      .listen('TripAccepted', (e) => {
-        trip.$patch(e.trip)
+    echo
+      .channel(`passenger_${trip.user_id}`)
+      .listen("TripAccepted", (e) => {
+        trip.$patch(e.trip);
 
-        title.value = "A driver is on the way!"
-        message.value = `${e.trip.driver.user.name} is coming in a ${e.trip.driver.year} ${e.trip.driver.color} ${e.trip.driver.make} ${e.trip.driver.model} with a license plate #${e.trip.driver.license_plate}`
+        title.value = "A driver is on the way!";
+        message.value = `${e.trip.driver.user.name} is coming in a ${e.trip.driver.year} ${e.trip.driver.color} ${e.trip.driver.make} ${e.trip.driver.model} with a license plate #${e.trip.driver.license_plate}`;
       })
-      .listen('TripLocationUpdated', (e) => {
-        trip.$patch(e.trip)
-        console.log("TripLocationUpdated:", e.trip);
+      .listen("TripLocationUpdated", (e) => {
+        trip.$patch(e.trip);
 
-        setTimeout(updateMapBounds, 1000)
+        setTimeout(updateMapBounds, 1000);
       })
-      .listen('TripStarted', (e) => {
-        trip.$patch(e.trip)
-        console.log("TripStarted:", e.trip);
+      .listen("TripStarted", (e) => {
+        trip.$patch(e.trip);
         location.$patch({
           current: {
-            geometry: e.trip.destination
-          }
-        })
+            geometry: e.trip.destination,
+          },
+        });
 
-        title.value = "You're on your way!"
-        message.value = `You are headed to ${e.trip.destination_name}`
+        title.value = "You're on your way!";
+        message.value = `You are headed to ${e.trip.destination_name}`;
       })
-      .listen('TripEnded', (e) => {
-        console.log("TripEnded:", e.trip);
-        trip.$patch(e.trip)
+      .listen("TripEnded", (e) => {
+        trip.$patch(e.trip);
 
-        title.value = "You've arrived!"
-        message.value = `Hope you enjoyed your ride with ${e.trip.driver.user.name}`
+        title.value = "You've arrived!";
+        message.value = `Hope you enjoyed your ride with ${e.trip.driver.user.name}`;
 
         setTimeout(() => {
-          trip.reset()
-          location.reset()
+          trip.reset();
+          location.reset();
 
           router.push({
-            name: 'landing'
-          })
-        }, 10000)
-      })
+            name: "landing",
+          });
+        }, 10000);
+      });
   } catch (error) {
     console.log(error);
   }
