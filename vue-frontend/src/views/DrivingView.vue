@@ -12,7 +12,7 @@
           </div>
 
           <div class="mt-2">
-            <div class="text-xl">{{ message }} <strong>passenger</strong> </div>
+            <div class="text-xl">{{ message }}</div>
           </div>
         </div>
 
@@ -62,7 +62,7 @@ const loadingCompleteTrip = ref(false);
 const gMap = ref(null);
 const intervalRef = ref(null);
 const title = ref('Driving to passenger...')
-const message = ref('Going to pick up')
+const message = ref('Going to pick up passenger...')
 
 const currentIcon = {
   url: 'https://openmoji.org/data/color/svg/1F698.svg',
@@ -105,9 +105,10 @@ const handleStartTrip = () => {
   toggleLoading(loadingStartTrip);
   http().post(`/trip/${trip.id}/start`)
     .then((response) => {
+      console.log(response.data);
       // trip.is_started = true;
-      title.value = 'Traveling to destination...'
-      message.value = 'Going to drop off'
+      title.value = `Traveling to ${response.data.destination_name}...`
+      message.value = `Going to drop off passenger at ${response.data.destination_name}`
       location.$patch({
         destination: {
           name: response.data.destination_name,

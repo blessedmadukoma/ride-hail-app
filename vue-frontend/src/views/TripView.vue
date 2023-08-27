@@ -27,6 +27,7 @@ import { useLocationStore } from '../stores/location';
 import { useTripStore } from '../stores/trip';
 import Pusher from 'pusher-js';
 import Echo from 'laravel-echo';
+import router from '../router';
 
 
 const location = useLocationStore();
@@ -77,17 +78,44 @@ onMounted(() => {
 
     echo.channel(`passenger_${trip.user_id}`)
       .listen('TripAccepted', (e) => {
-        console.log("TripAccepted", e);
-        trip.$patch(e.trip);
+        trip.$patch(e.trip)
 
-        title.value = 'Your driver is on the way!'
+        title.value = "A driver is on the way!"
         message.value = `${e.trip.driver.user.name} is coming in a ${e.trip.driver.year} ${e.trip.driver.color} ${e.trip.driver.make} ${e.trip.driver.model} with a license plate #${e.trip.driver.license_plate}`
       })
       .listen('TripLocationUpdated', (e) => {
-        trip.$patch(e.trip);
+        trip.$patch(e.trip)
+        console.log("TripLocationUpdated:", e.trip);
 
-        // Zoom in on the driver's location
-        setTimeout(updateMapBounds, 1000);
+        setTimeout(updateMapBounds, 1000)
+      })
+      .listen('TripStarted', (e) => {
+        trip.$patch(e.trip)
+        console.log("TripStarted:", e.trip);
+        location.$patch({
+          current: {
+            geometry: e.trip.destination
+          }
+        })
+
+        title.value = "You're on your way!"
+        message.value = `You are headed to ${e.trip.destination_name}`
+      })
+      .listen('TripEnded', (e) => {
+        console.log("TripEnded:", e.trip);
+        trip.$patch(e.trip)
+
+        title.value = "You've arrived!"
+        message.value = `Hope you enjoyed your ride with ${e.trip.driver.user.name}`
+
+        setTimeout(() => {
+          trip.reset()
+          location.reset()
+
+          router.push({
+            name: 'landing'
+          })
+        }, 10000)
       })
   } catch (error) {
     console.log(error);
