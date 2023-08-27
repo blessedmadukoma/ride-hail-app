@@ -3,8 +3,12 @@ import { ref, reactive, onMounted, computed } from 'vue'
 import { vMaska } from 'maska'
 import axios from 'axios'
 import { useRouter } from 'vue-router'
+import Loading from '../components/Loading.vue';
+import toggleLoading from '../helpers/loading';
 
 const router = useRouter()
+const loadingLogin = ref(false)
+const loadingVerify = ref(false)
 
 const credentials = reactive({
   phone: '',
@@ -29,9 +33,11 @@ const formattedCredentials = computed(() => {
 })
 
 const handleLogin = () => {
+  toggleLoading(loadingLogin);
   axios.post(`${import.meta.env.VITE_API_URL}/login`, formattedCredentials.value)
     .then((response) => {
       console.log(response);
+      toggleLoading(loadingLogin)
       waitingOnVerification.value = true;
     }).catch((error) => {
       console.log(error.response.data);
@@ -41,11 +47,12 @@ const handleLogin = () => {
 
 
 const handleVerification = () => {
+  toggleLoading(loadingVerify)
   axios.post(`${import.meta.env.VITE_API_URL}/login/verify`, formattedCredentials.value).then((response) => {
     console.log(response.data);
 
     localStorage.setItem('token', response.data);
-
+    toggleLoading(loadingVerify)
     router.push({ name: 'landing' });
   }).catch((error) => {
     console.log(error.response.data);
@@ -86,7 +93,10 @@ const handleVerification = () => {
 
         <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
           <button type="submit"
-            class="inline-flex justify-center rounded-md border border-transparent bg-black py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-600 focus:outline-none">Verify</button>
+            class="inline-flex justify-center rounded-md border border-transparent bg-black py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-600 focus:outline-none">
+            <Loading />
+            <span>Verify</span>
+          </button>
         </div>
       </div>
     </form>

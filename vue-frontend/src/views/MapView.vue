@@ -15,9 +15,13 @@
         </div>
 
         <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
-          <button @click="handleConfirmTrip" type="button"
-            class="inline-flex justify-center rounded-md border border-transparent bg-black py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-600 focus:outline-none">Let's
-            Go!</button>
+          <button @click="handleConfirmTrip" :loading="loading" type="button"
+            class="inline-flex justify-center rounded-md border border-transparent bg-black py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-600 focus:outline-none">
+            <Loading v-if="loading" :active="loading" text="Confirming Trip" />
+
+            <span v-else>Let's
+              Go!</span>
+          </button>
         </div>
       </div>
     </div>
@@ -29,9 +33,17 @@ import { useLocationStore } from '@/stores/location';
 import { useRouter } from 'vue-router';
 import { onMounted, ref } from 'vue';
 import http from '../helpers/http';
+import Loading from '../components/Loading.vue';
+
+import toggleLoading from '../helpers/loading';
+import { useTripStore } from '../stores/trip';
 
 const location = useLocationStore();
+const trip = useTripStore();
+
 const router = useRouter();
+
+const loading = ref(false);
 
 const gMap = ref(null)
 
@@ -71,15 +83,20 @@ onMounted(async () => {
 })
 
 const handleConfirmTrip = () => {
+  toggleLoading(loading);
+
   http().post('/trip', {
-    origin: JSON.stringify(location.current.geometry),
-    // origin: location.current.geometry,
-    destination: JSON.stringify(location.destination.geometry),
-    // destination: location.destination.geometry,
+    // origin: JSON.stringify(location.current.geometry),
+    origin: location.current.geometry,
+    // destination: JSON.stringify(location.destination.geometry),
+    destination: location.destination.geometry,
     destination_name: location.destination.name,
   }).then((response) => {
+    toggleLoading(loading);
+
     console.log(response.data);
-    // return;
+    trip.$patch(response.data)
+
     router.push({ name: 'trip' })
   }).catch((error) => {
     console.error(error.response.data.message);
