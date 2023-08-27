@@ -33,6 +33,9 @@ export const useTripStore = defineStore("trip", () => {
     lng: null,
   });
 
+  const is_started = ref(false);
+  const is_complete = ref(false);
+
   const reset = () => {
     id.value = null;
     user_id.value = null;
@@ -55,6 +58,9 @@ export const useTripStore = defineStore("trip", () => {
     driver.license_plate = null;
     driver.color = null;
     driver.user.name = null;
+
+    is_started.value = false;
+    is_complete.value = false;
   };
 
   return {
@@ -64,6 +70,8 @@ export const useTripStore = defineStore("trip", () => {
     destination,
     destination_name,
     driver_location,
+    is_started,
+    is_complete,
     reset,
   };
 });
