@@ -12,7 +12,7 @@
           </div>
 
           <div class="mt-2">
-            <div class="text-xl">Going to pick up <strong>a passenger</strong> </div>
+            <div class="text-xl">{{ message }} <strong>passenger</strong> </div>
           </div>
         </div>
 
@@ -21,7 +21,7 @@
             class="cursor-pointer inline-flex justify-center rounded-md border border-transparent bg-black py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-gray-600 focus:outline-none">
             <Loading v-if="loadingCompleteTrip" :active="loadingCompleteTrip" text="Completing Trip" />
 
-            <span v-else>Start Trip</span>
+            <span v-else>Complete Trip</span>
           </button>
 
           <button v-else @click="handleStartTrip" :loading="loadingStartTrip" type="button"
@@ -62,6 +62,7 @@ const loadingCompleteTrip = ref(false);
 const gMap = ref(null);
 const intervalRef = ref(null);
 const title = ref('Driving to passenger...')
+const message = ref('Going to pick up')
 
 const currentIcon = {
   url: 'https://openmoji.org/data/color/svg/1F698.svg',
@@ -106,6 +107,7 @@ const handleStartTrip = () => {
     .then((response) => {
       // trip.is_started = true;
       title.value = 'Traveling to destination...'
+      message.value = 'Going to drop off'
       location.$patch({
         destination: {
           name: response.data.destination_name,
